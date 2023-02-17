@@ -2,7 +2,7 @@ FROM codercom/code-server:4.4.0
 
 ARG NB_USER="coder"
 ARG NB_UID="1000"
-ARG NB_GID="100"
+ARG NB_GID="1000"
 
 # Fix: https://github.com/hadolint/hadolint/wiki/DL4006
 # Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
@@ -81,7 +81,6 @@ RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
     sed -i.bak -e 's/^%admin/#%admin/' /etc/sudoers && \
     sed -i.bak -e 's/^%sudo/#%sudo/' /etc/sudoers && \
     # useradd -l -m -s /bin/bash -N -u "${NB_UID}" "${NB_USER}" && \
-    useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     mkdir -p "${CONDA_DIR}" && \
     chown "${NB_USER}:${NB_GID}" "${CONDA_DIR}" && \
     chmod g+w /etc/passwd && \
