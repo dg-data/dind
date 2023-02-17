@@ -1,0 +1,14 @@
+kind: pipeline
+name: default
+type: docker
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: xefir/code-server-dind
+      auto_tag: true
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
