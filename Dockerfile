@@ -52,7 +52,7 @@ ENV CONDA_DIR=/opt/conda \
     LANGUAGE=en_US.UTF-8
 ENV PATH="${CONDA_DIR}/bin:${PATH}" \
     HOME="/home/${NB_USER}"
-
+CMD echo "$NB_USER"
 RUN apt-get update && \
     apt-get install -y docker.io docker-compose bash curl openssh-server && \
     apt-get purge -y needrestart && \
