@@ -149,7 +149,7 @@ EXPOSE 8881
 ENV PATH="${HOME}/.local/bin:${PATH}"
 # Configure container startup
 # ENTRYPOINT ["tini", "-g", "--"]
-CMD ["start-notebook.sh"]
+CMD ["/bin/bash","start-notebook.sh",">>","/home/${CUSER}/work/w.log"]
 
 # Copy local files as late as possible to avoid cache busting
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
@@ -222,7 +222,7 @@ USER ${NB_UID}
 
 # RUN groupadd docker \
 #     usermod -aG docker $USER 
-RUN echo ${JUPYTER_DOCKER_STACKS_QUIET}
+
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
