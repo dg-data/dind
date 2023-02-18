@@ -92,7 +92,7 @@ RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
 USER ${NB_UID}
 
 # Pin python version here, or set it to "default"
-ARG PYTHON_VERSION=3.10
+ARG PYTHON_VERSION="default"
 
 # Setup work directory for backward-compatibility
 RUN mkdir "/home/${CUSER}/work" && \
@@ -155,7 +155,7 @@ CMD ["start-notebook.sh"]
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
 
 # Currently need to have both jupyter_notebook_config and jupyter_server_config to support classic and lab
-COPY jupyter_server_config.py /etc/jupyter/
+# COPY jupyter_server_config.py /etc/jupyter/
 
 # Fix permissions on /etc/jupyter as root
 USER root
