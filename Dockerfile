@@ -151,8 +151,8 @@ ENV PATH="${HOME}/.local/bin:${PATH}"
 # ENTRYPOINT ["tini", "-g", "--"]
 
 # Copy local files as late as possible to avoid cache busting
-COPY --chown="${NB_UID}:${NB_GID}" start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
-
+COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
+RUN chmod a+rx /usr/local/bin/start-notebook.sh
 # Currently need to have both jupyter_notebook_config and jupyter_server_config to support classic and lab
 COPY jupyter_server_config.py /etc/jupyter/
 
