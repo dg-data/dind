@@ -52,7 +52,7 @@ ENV CONDA_DIR=/opt/conda \
     LANGUAGE=en_US.UTF-8
 ENV PATH="${CONDA_DIR}/bin:${PATH}" \
     HOME="/home/${NB_USER}"
-RUN echo "!!!! debug $NB_USER $HOME"
+
 RUN apt-get update && \
     apt-get install -y docker.io docker-compose bash curl openssh-server && \
     apt-get purge -y needrestart && \
@@ -74,7 +74,7 @@ RUN chmod a+rx /usr/local/bin/fix-permissions
 RUN sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /etc/skel/.bashrc && \
    # Add call to conda init script see https://stackoverflow.com/a/58081608/4413446
    echo 'eval "$(command conda shell.bash hook 2> /dev/null)"' >> /etc/skel/.bashrc
-ARG NB_USER
+
 # Create NB_USER with name jovyan/coder user with UID=1000 and in the 'users' group
 # and make sure these dirs are writable by the `users` group.
 RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
@@ -82,7 +82,7 @@ RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
     sed -i.bak -e 's/^%sudo/#%sudo/' /etc/sudoers && \
     # useradd -l -m -s /bin/bash -N -u "${NB_UID}" "${NB_USER}" && \
     mkdir -p "${CONDA_DIR}" && \
-    chown $NB_USER:$NB_GID "${CONDA_DIR}" && \
+    chown "${NB_UID}:${NB_GID}" "${CONDA_DIR}" && \
     chmod g+w /etc/passwd && \
     fix-permissions "${HOME}" && \
     fix-permissions "${CONDA_DIR}"
