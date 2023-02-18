@@ -222,7 +222,7 @@ USER ${NB_UID}
 
 # RUN groupadd docker \
 #     usermod -aG docker $USER 
-
+RUN echo $NB_USER
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
