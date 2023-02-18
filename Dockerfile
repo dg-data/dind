@@ -149,13 +149,13 @@ EXPOSE 8881
 ENV PATH="${HOME}/.local/bin:${PATH}"
 # Configure container startup
 # ENTRYPOINT ["tini", "-g", "--"]
-CMD ["start-notebook.sh"]
+# CMD ["start-notebook.sh"]
 
 # Copy local files as late as possible to avoid cache busting
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
 
 # Currently need to have both jupyter_notebook_config and jupyter_server_config to support classic and lab
-# COPY jupyter_server_config.py /etc/jupyter/
+COPY jupyter_server_config.py /etc/jupyter/
 
 # Fix permissions on /etc/jupyter as root
 USER root
