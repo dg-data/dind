@@ -222,7 +222,7 @@ CMD ["/bin/sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 
 # RUN groupadd docker \
 #     usermod -aG docker $USER 
-ENV PATH="${CONDA_DIR}/bin:${PATH}"
+RUN echo "export PATH=$PATH" > /etc/environment
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
