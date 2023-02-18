@@ -163,7 +163,7 @@ RUN chmod a+rx /usr/local/bin/*.sh
 RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
     /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
     fix-permissions /etc/jupyter/
-
+RUN echo "export PATH=$PATH" > /etc/environment
 # # HEALTHCHECK documentation: https://docs.docker.com/engine/reference/builder/#healthcheck
 # # This healtcheck works well for `lab`, `notebook`, `nbclassic`, `server` and `retro` jupyter commands
 # # https://github.com/jupyter/docker-stacks/issues/915#issuecomment-1068528799
@@ -222,7 +222,7 @@ CMD ["/bin/sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 
 # RUN groupadd docker \
 #     usermod -aG docker $USER 
-RUN echo "export PATH=$PATH" > /etc/environment
+
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
