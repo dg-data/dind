@@ -225,5 +225,5 @@ HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
 
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
-RUN which jupyter
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
+# ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
+ENTRYPOINT []
