@@ -171,7 +171,7 @@ USER root
 HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
      CMD wget -O- --no-verbose --tries=1 --no-check-certificate \
      http${GEN_CERT:+s}://localhost:8888${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
-
+USER ${NB_UID}
 # Initial ABXDA
 # RUN apt-get update && \
 #     apt-get install -y gdal-bin
