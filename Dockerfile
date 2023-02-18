@@ -152,13 +152,13 @@ ENV PATH="${HOME}/.local/bin:${PATH}"
 
 # Copy local files as late as possible to avoid cache busting
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
-RUN chmod a+rx /usr/local/bin/start-notebook.sh
+
 # Currently need to have both jupyter_notebook_config and jupyter_server_config to support classic and lab
 COPY jupyter_server_config.py /etc/jupyter/
 
 # Fix permissions on /etc/jupyter as root
 USER root
-
+RUN chmod a+rx /usr/local/bin/start-notebook.sh
 # Legacy for Jupyter Notebook Server, see: [#1205](https://github.com/jupyter/docker-stacks/issues/1205)
 RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
     /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
