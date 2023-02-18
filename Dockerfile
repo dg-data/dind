@@ -3,7 +3,7 @@ FROM codercom/code-server:4.4.0
 ARG NB_USER="coder"
 ARG NB_UID="1000"
 ARG NB_GID="100"
-
+ARG CUSER="coder"
 # Fix: https://github.com/hadolint/hadolint/wiki/DL4006
 # Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -44,14 +44,16 @@ RUN apt-get update && apt-get install --yes bzip2 \
 # Configure environment
 ENV CONDA_DIR=/opt/conda \
     SHELL=/bin/bash \
-    NB_USER="${NB_USER}" \
+    USER="${NB_USER}" \
+    NB_USER="${CUSER}" \
     NB_UID=${NB_UID} \
     NB_GID=${NB_GID} \
     LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8
+    
 ENV PATH="${CONDA_DIR}/bin:${PATH}" \
-    HOME="/home/${NB_USER}"
+    HOME="/home/${CUSER}"
 
 RUN apt-get update && \
     apt-get install -y docker.io docker-compose bash curl openssh-server && \
@@ -93,8 +95,8 @@ USER ${NB_UID}
 ARG PYTHON_VERSION=3.10
 
 # Setup work directory for backward-compatibility
-RUN mkdir "/home/${NB_USER}/work" && \
-    fix-permissions "/home/${NB_USER}"
+RUN mkdir "/home/${CUSER}/work" && \
+    fix-permissions "/home/${CUSER}"
 
 # Download and install Micromamba, and initialize Conda prefix.
 #   <https://github.com/mamba-org/mamba#micromamba>
