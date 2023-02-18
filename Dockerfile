@@ -149,7 +149,7 @@ EXPOSE 8881
 ENV PATH="${HOME}/.local/bin:${PATH}"
 # Configure container startup
 # ENTRYPOINT ["tini", "-g", "--"]
-CMD ["/bin/bash","start-notebook.sh",">>","/home/${CUSER}/work/w.log"]
+CMD ["sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 
 # Copy local files as late as possible to avoid cache busting
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
