@@ -225,4 +225,5 @@ HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
 
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
+ENV PATH="${HOME}/.local/bin:${PATH}"
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
