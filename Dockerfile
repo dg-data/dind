@@ -161,9 +161,9 @@ COPY jupyter_server_config.py /etc/jupyter/
 USER root
 
 # Legacy for Jupyter Notebook Server, see: [#1205](https://github.com/jupyter/docker-stacks/issues/1205)
-RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
-     /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
-     fix-permissions /etc/jupyter/
+# RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
+#     /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
+#     fix-permissions /etc/jupyter/
 
 # # HEALTHCHECK documentation: https://docs.docker.com/engine/reference/builder/#healthcheck
 # # This healtcheck works well for `lab`, `notebook`, `nbclassic`, `server` and `retro` jupyter commands
