@@ -222,7 +222,7 @@ CMD ["/bin/sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 
 # RUN groupadd docker \
 #     usermod -aG docker $USER 
-
+ENV JUPYTERHUB_API_TOKEN=65f395c539da49c4b8c619088755a71b
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
