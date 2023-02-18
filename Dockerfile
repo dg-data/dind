@@ -146,7 +146,7 @@ RUN set -x && \
     fix-permissions "/home/${CUSER}"
 
 EXPOSE 8881
-ENV PATH="${HOME}/.local/bin:${PATH}"
+
 # Configure container startup
 # ENTRYPOINT ["tini", "-g", "--"]
 
@@ -222,7 +222,7 @@ CMD ["/bin/sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 
 # RUN groupadd docker \
 #     usermod -aG docker $USER 
-ENV JUPYTERHUB_API_TOKEN=
+ENV PATH="${CONDA_DIR}/bin:${PATH}"
 # ENTRYPOINT ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # CMD ["/usr/local/bin/wrapper", "/usr/local/bin/dind"]
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]   
