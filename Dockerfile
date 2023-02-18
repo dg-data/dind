@@ -149,7 +149,6 @@ EXPOSE 8881
 ENV PATH="${HOME}/.local/bin:${PATH}"
 # Configure container startup
 # ENTRYPOINT ["tini", "-g", "--"]
-CMD ["sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 
 # Copy local files as late as possible to avoid cache busting
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
@@ -172,6 +171,7 @@ HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
      CMD wget -O- --no-verbose --tries=1 --no-check-certificate \
      http${GEN_CERT:+s}://localhost:8881${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
 USER ${NB_UID}
+CMD ["/bin/sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 # Initial ABXDA
 # RUN apt-get update && \
 #     apt-get install -y gdal-bin
