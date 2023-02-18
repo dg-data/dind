@@ -2,7 +2,7 @@ FROM codercom/code-server:4.4.0
 
 ARG NB_USER="coder"
 ARG NB_UID="1000"
-ARG NB_GID="1000"
+ARG NB_GID="100"
 
 # Fix: https://github.com/hadolint/hadolint/wiki/DL4006
 # Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
@@ -74,7 +74,7 @@ RUN chmod a+rx /usr/local/bin/fix-permissions
 RUN sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /etc/skel/.bashrc && \
    # Add call to conda init script see https://stackoverflow.com/a/58081608/4413446
    echo 'eval "$(command conda shell.bash hook 2> /dev/null)"' >> /etc/skel/.bashrc
-
+ARG NB_USER
 # Create NB_USER with name jovyan/coder user with UID=1000 and in the 'users' group
 # and make sure these dirs are writable by the `users` group.
 RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
