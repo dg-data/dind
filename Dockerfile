@@ -111,7 +111,7 @@ RUN mkdir "/home/${CUSER}/work" && \
 # files across image layers when the permissions change
 COPY --chown="${NB_UID}:${NB_GID}" initial-condarc "${CONDA_DIR}/.condarc"
 WORKDIR /tmp
-
+RUN pip install jupyterlab
 RUN set -x && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then \
@@ -132,8 +132,8 @@ RUN set -x && \
         "${PYTHON_SPECIFIER}" \
         'mamba' \
         'notebook' \
-        'jupyterhub' \
-        'jupyterlab' && \
+        'jupyterhub' && \
+    #    'jupyterlab' && \
     rm micromamba && \
     # Pin major.minor version of python
     mamba list python | grep '^python ' | tr -s ' ' | cut -d ' ' -f 1,2 >> "${CONDA_DIR}/conda-meta/pinned" && \
