@@ -15,8 +15,8 @@ USER $NB_USER
 RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
 RUN ./bin/micromamba create -n python3.7 python=3.7 -c conda-forge
 # RUN yes | ./bin/micromamba shell init -s bash -p /home/jovyan/micromamba
-RUN eval "$(./bin/micromamba shell hook --shell=bash)"
-RUN /bin/bash -c "./bin/micromamba activate python3.7 && \
+RUN eval "$(./bin/micromamba shell hook --shell=bash) && \
+    /bin/bash -c "./bin/micromamba activate python3.7 && \
     ./bin/micromamba install -y anaconda -c anaconda"
 RUN /bin/bash -c "./bin/micromamba activate python3.7 && \
     ./bin/micromamba install -y 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
