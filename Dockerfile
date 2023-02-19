@@ -163,7 +163,8 @@ RUN chmod a+rx /usr/local/bin/*.sh
 RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
     /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
     fix-permissions /etc/jupyter/
-RUN echo "export PATH=$PATH" > /etc/environment
+RUN echo export PATH=/opt/conda/bin:$PATH >> $HOME/.profile && \
+    echo export PATH >> $HOME/.profile
 # # HEALTHCHECK documentation: https://docs.docker.com/engine/reference/builder/#healthcheck
 # # This healtcheck works well for `lab`, `notebook`, `nbclassic`, `server` and `retro` jupyter commands
 # # https://github.com/jupyter/docker-stacks/issues/915#issuecomment-1068528799
