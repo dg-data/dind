@@ -145,7 +145,7 @@ RUN set -x && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${CUSER}"
 RUN jupyter serverextension enable --py jupyterlab
-EXPOSE 8881
+EXPOSE 8888
 
 # Configure container startup
 # ENTRYPOINT ["tini", "-g", "--"]
@@ -170,7 +170,7 @@ RUN echo export PATH=/opt/conda/bin:$PATH >> $HOME/.profile && \
 # # https://github.com/jupyter/docker-stacks/issues/915#issuecomment-1068528799
 HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
      CMD wget -O- --no-verbose --tries=1 --no-check-certificate \
-     http${GEN_CERT:+s}://localhost:8881${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
+     http${GEN_CERT:+s}://localhost:8888${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
 USER ${NB_UID}
 CMD ["/bin/sh", "-c", "start-notebook.sh > $HOME/my-script.log 2>&1"]
 # Initial ABXDA
