@@ -13,7 +13,7 @@ USER $NB_USER
 
 # RUN conda create -y --name python3.7 python=3.7 anaconda ipykernel
 RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
-RUN ./bin/micromamba create -n python3.7 python=3.7
+RUN ./bin/micromamba create -n python3.7 python=3.7 -c conda-forge
 RUN yes | ./bin/micromamba shell init -s bash -p /home/jovyan/micromamba
 RUN /bin/bash -c "source activate python3.7 && \
     mamba install -y anaconda -c anaconda"
