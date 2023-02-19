@@ -140,7 +140,7 @@ RUN set -x && \
     jupyter notebook --generate-config && \
     mamba clean --all -f -y && \
     npm cache clean --force && \
-    jupyter lab clean && \
+    # jupyter lab clean && \
     rm -rf "/home/${CUSER}/.cache/yarn" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${CUSER}"
