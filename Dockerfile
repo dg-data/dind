@@ -16,7 +16,7 @@ RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | t
 RUN ./bin/micromamba create -n python3.7 python=3.7 anaconda -c anaconda ipykernel -c conda-forge
 RUN yes | ./bin/micromamba shell init -s bash -p /home/jovyan/micromamba
 RUN /bin/bash -c "source activate python3.7 && \
-    conda install -y 'tornado=5.1.1' 'ipywidgets=7.2*' 'conda-forge::blas=*=openblas' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
+    mamba install -y 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
     'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \
     'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'"
 
