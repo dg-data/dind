@@ -5,10 +5,9 @@ EXPOSE 8888
 
 USER root
 
-RUN pip install -v nbtools jupyter_wysiwyg
+RUN pip install -v nbtools
 
-RUN jupyter nbextension enable --sys-prefix --py nbtools && \
-    jupyter nbextension enable --sys-prefix --py jupyter_wysiwyg
+RUN jupyter nbextension enable --sys-prefix --py nbtools
 
 USER $NB_USER
 
