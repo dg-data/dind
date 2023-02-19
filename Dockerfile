@@ -144,7 +144,7 @@ RUN set -x && \
     rm -rf "/home/${CUSER}/.cache/yarn" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${CUSER}"
-RUN jupyter serverextension enable --py jupyterlab
+
 EXPOSE 8888
 
 # Configure container startup
