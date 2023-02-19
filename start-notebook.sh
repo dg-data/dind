@@ -2,7 +2,7 @@
 set -e
 # The Jupyter command to launch JupyterLab by default
 DOCKER_STACKS_JUPYTER_CMD="${DOCKER_STACKS_JUPYTER_CMD:=lab}"
-export PATH=/opt/conda/bin:$PATH
+
 if [[ -n "${JUPYTERHUB_API_TOKEN}" ]]; then
     echo "WARNING: using start-singleuser.sh instead of start-notebook.sh to start a server associated with JupyterHub."
     exec /usr/local/bin/start-singleuser.sh "$@"
