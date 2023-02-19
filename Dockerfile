@@ -17,7 +17,7 @@ RUN ./bin/micromamba create -n python3.7 python=3.7 -c conda-forge
 RUN ./bin/micromamba shell init --shell=bash --prefix=~/micromamba
 RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
     $MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
-    $MAMBA_EXE install -y -n python3.7 -c anaconda anaconda"
+    ./bin/micromamba install -y -n python3.7 -c anaconda anaconda"
    
 RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
     /bin/bash -c "$MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
