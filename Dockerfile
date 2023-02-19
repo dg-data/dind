@@ -17,7 +17,8 @@ RUN ./bin/micromamba create -n python3.7 python=3.7 -c conda-forge
 RUN ./bin/micromamba shell init --shell=bash --prefix=~/micromamba
 RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
     $MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
-    $MAMBA_EXE install -c anaconda anaconda python=3.7"
+    $MAMBA_EXE install anaconda -c anaconda"
+    
 RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
     /bin/bash -c "$MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
     $MAMBA_EXE install 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
@@ -28,7 +29,7 @@ RUN /bin/bash -c "./bin/micromamba activate python3.7 && \
     pip install nbtools jupyter_wysiwyg \
     'cyjupyter==0.2.0' 'ccalnoir==2.7.1' 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' \
     'plotly==4.1.0' 'orca==1.3.0' 'rpy2==3.2.1' 'opencv-python==4.0.0.21' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli"
-
+    
 RUN echo "/home/jovyan/.local/lib/python3.7/site-packages" > /opt/conda/envs/python3.7/lib/python3.7/site-packages/conda.pth
 
 USER root
