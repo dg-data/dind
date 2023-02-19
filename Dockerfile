@@ -14,7 +14,7 @@ USER $NB_USER
 # RUN conda create -y --name python3.7 python=3.7 anaconda ipykernel
 RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
 RUN ./bin/micromamba create -n python3.7 python=3.7 -c conda-forge
-RUN yes | ./bin/micromamba shell init --shell=bash --prefix=~/micromamba
+RUN ./bin/micromamba shell init --shell=bash --prefix=~/micromamba
 RUN eval "$(./bin/micromamba shell hook --shell=bash)" && \
     /bin/bash -c "./bin/micromamba activate python3.7 && \
     ./bin/micromamba install -y anaconda -c anaconda"
