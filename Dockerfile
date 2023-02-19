@@ -1,5 +1,6 @@
-FROM genepattern/notebook-base:20.07
+FROM genepattern/notebook-base:20.10
 ARG NB_USER=jovyan
+
 EXPOSE 8888
 
 USER root
