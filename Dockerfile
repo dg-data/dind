@@ -24,11 +24,14 @@ RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_
     ./bin/micromamba install -y -n python3.7 -c conda-forge -c anaconda 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
     'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \
     'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'"
-    
+
+USER root
+RUN chown -R jovyan:users /opt/conda/etc/jupyter/nbconfig && \
+    chmod -R +r /opt/conda/etc/jupyter/nbconfig
+
+USER $NB_USER
 RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
     $MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
-    chown -R jovyan:users /opt/conda/etc/jupyter/nbconfig && \
-    chmod -R +r /opt/conda/etc/jupyter/nbconfig && \
     pip install 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' 'plotly==4.1.0' 'orca==1.3.0' \
     'rpy2==3.2.1' 'opencv-python==4.1.2.30' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli"
     
