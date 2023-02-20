@@ -10,8 +10,7 @@ RUN pip install -v nbtools
 RUN jupyter nbextension enable --sys-prefix --py nbtools
 
 USER $NB_USER
-RUN apt-get update && apt-get install -y wget bzip2 \
-    && wget -qO-  https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
+RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
     && touch /root/.bashrc \
     && ./bin/micromamba shell init -s bash -p /opt/conda  \
     && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc
