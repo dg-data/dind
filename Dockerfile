@@ -27,16 +27,16 @@ RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_
     
 RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
     $MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
-    pip install nbtools jupyter_wysiwyg \
-    'cyjupyter==0.2.0' 'ccalnoir==2.7.1' 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' \
-    'plotly==4.1.0' 'orca==1.3.0' 'rpy2==3.2.1' 'opencv-python==4.0.0.21' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli"
+    pip install jupyter_wysiwyg 'cyjupyter==0.2.0' 'ccalnoir==2.7.1' 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' \
+    'plotly==4.1.0' 'orca==1.3.0' 'rpy2==3.2.1' 'opencv-python==4.1.2.30' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli"
     
 RUN echo "/home/jovyan/.local/lib/python3.7/site-packages" > /opt/conda/envs/python3.7/lib/python3.7/site-packages/conda.pth
 
 USER root
 
 # Add as Jupyter kernel
-RUN /bin/bash -c "./bin/micromamba activate python3.7 && python -m ipykernel install --name python3.7 --display-name 'Python 3.7'"
+RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
+    "$MAMBA_EXE activate python3.7 && python -m ipykernel install --name python3.7 --display-name 'Python 3.7'"
 
 # Remove default Python kernel
 RUN rm -r /opt/conda/share/jupyter/kernels/python3 && \
