@@ -26,7 +26,7 @@ RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_
     'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'"
 
 # . "${CONDA_DIR}/etc/profile.d/conda.sh" && . ~/micromamba/etc/profile.d/mamba.sh && \
-RUN eval "$(micromamba shell hook -s bash)" && \
+RUN eval "$(./micromamba shell hook -s bash)" && \
     micromamba activate ~/micromamba/envs/python3.7 && pip install nbtools 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' 'orca==1.3.0' 'rpy2==3.2.1' \
     'opencv-python==4.1.2.30' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli
     
