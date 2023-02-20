@@ -8,7 +8,7 @@ USER root
 RUN pip install -v nbtools
 
 RUN jupyter nbextension enable --sys-prefix --py nbtools
-RUN find / -name mamba > w.txt && cat w.txt
+RUN find / -name conda > w.txt && cat w.txt
 USER $NB_USER
 #RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
 #    && touch /root/.bashrc \
