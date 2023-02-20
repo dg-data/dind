@@ -1,14 +1,30 @@
-FROM genepattern/notebook-base:20.10
+FROM jupyter/minimal-notebook:a374cab4fcb6
 ARG NB_USER=jovyan
 
 EXPOSE 8888
 
 USER root
 
+# Install the missing Qt4 API (used by matplotlib)
+RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common python3-pyqt5 \
+    libxtst6 libssl-dev libcurl4-openssl-dev gpg build-essential python-dev default-jdk apt-utils libxml2-dev libxml2
+
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get install -y docker-ce
+
+# Install the magic wrapper.
+RUN wget https://raw.githubusercontent.com/jpetazzo/dind/master/wrapdocker --output-document=/usr/local/bin/wrapdocker && \
+    chmod +x /usr/local/bin/wrapdocker
+
+# Set up the Docker service
+RUN gpasswd -a $NB_USER docker && \
+    newgrp docker
+
 RUN pip install -v nbtools
 
 RUN jupyter nbextension enable --sys-prefix --py nbtools
-RUN find / -name conda > w.txt && cat w.txt
+RUN find / -name mamba > w.txt && cat w.txt
 USER $NB_USER
 #RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
 #    && touch /root/.bashrc \
@@ -54,3 +70,4 @@ USER root
 RUN rm -r work
 
 USER $NB_USER
+ENV TERM xterm
