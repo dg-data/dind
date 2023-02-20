@@ -30,7 +30,7 @@ RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_
     pip install 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' 'plotly==4.1.0' 'orca==1.3.0' \
     'rpy2==3.2.1' 'opencv-python==4.1.2.30' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli && \
     chown -R jovyan:users /opt/conda/etc/jupyter/nbconfig && \
-    chmod -R +r /opt/conda/etc/jupyter/nbconfig
+    chmod -R +r /opt/conda/etc/jupyter/nbconfig"
     
 RUN echo "/home/jovyan/.local/lib/python3.7/site-packages" > /opt/conda/envs/python3.7/lib/python3.7/site-packages/conda.pth
 
