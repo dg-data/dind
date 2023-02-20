@@ -14,7 +14,7 @@ USER $NB_USER
 #    && touch /root/.bashrc \
 #    && ./bin/micromamba shell init -s bash -p /opt/conda  \
 #    && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc
-RUN /bin/bash -c "find / -name mamba 2>/dev/null"
+RUN find / -name mamba > w.txt && cat w.txt
 # RUN source $MICROMAMBA_INSTALL_FOLDER/.bashrc && micromamba 
 # install --channel anaconda --channel conda-forge r-argparse
 RUN mamba create -y --name python3.7 python=3.7 anaconda ipykernel
