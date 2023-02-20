@@ -24,7 +24,7 @@ RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_
     ./bin/micromamba install -y -n python3.7 -c conda-forge -c anaconda 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
     'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \
     'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'"
-RUN /bin/bash -c "echo $MAMBA_EXE && $MAMBA_EXE env"
+RUN /bin/bash -c "./bin/micromamba info"
 # . "${CONDA_DIR}/etc/profile.d/conda.sh" && . ~/micromamba/etc/profile.d/mamba.sh && \
 RUN eval "$("$MAMBA_EXE" shell hook -s bash)" && \
     micromamba activate ~/micromamba/envs/python3.7 && pip install nbtools 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' 'orca==1.3.0' 'rpy2==3.2.1' \
