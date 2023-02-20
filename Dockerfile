@@ -8,13 +8,13 @@ USER root
 RUN pip install -v nbtools
 
 RUN jupyter nbextension enable --sys-prefix --py nbtools
-
+RUN find / -name mamba > w.txt && cat w.txt
 USER $NB_USER
 #RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
 #    && touch /root/.bashrc \
 #    && ./bin/micromamba shell init -s bash -p /opt/conda  \
 #    && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc
-RUN find / -name mamba > w.txt && cat w.txt
+
 # RUN source $MICROMAMBA_INSTALL_FOLDER/.bashrc && micromamba 
 # install --channel anaconda --channel conda-forge r-argparse
 RUN mamba create -y --name python3.7 python=3.7 anaconda ipykernel
