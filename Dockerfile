@@ -13,27 +13,26 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
     apt-get install -y docker-ce
 
-# Install the magic wrapper.
+# Install the magic wrapper
 RUN wget https://raw.githubusercontent.com/jpetazzo/dind/master/wrapdocker --output-document=/usr/local/bin/wrapdocker && \
     chmod +x /usr/local/bin/wrapdocker
 
-# Set up the Docker service
+# Set up Docker
 RUN gpasswd -a $NB_USER docker && \
     newgrp docker
 
 RUN pip install -v nbtools
 
 RUN jupyter nbextension enable --sys-prefix --py nbtools
-RUN find / -name mamba > w.txt && cat w.txt
+
 USER $NB_USER
 #RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
 #    && touch /root/.bashrc \
 #    && ./bin/micromamba shell init -s bash -p /opt/conda  \
 #    && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc
-
 # RUN source $MICROMAMBA_INSTALL_FOLDER/.bashrc && micromamba 
 # install --channel anaconda --channel conda-forge r-argparse
-RUN mamba create -y --name python3.7 python=3.7 anaconda ipykernel
+RUN mamba create -y --name python3.7 python=3.7 anaconda ipykernel --channel anaconda --channel conda-forge
 
 RUN micromamba create -n python3.7 python=3.7 -c conda-forge
 RUN /bin/bash -c "micromamba info"
