@@ -41,8 +41,8 @@ RUN source activate python3.7 && \
 
 # . "${CONDA_DIR}/etc/profile.d/conda.sh" && . ~/micromamba/etc/profile.d/mamba.sh && \
 RUN source activate python3.7 && \ 
-     pip install nbtools 'igv-jupyter==0.9.8' 'cyjupyter==0.2.0' 'ccalnoir==2.7.1' 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' 'plotly==4.1.0' \
-     'orca==1.3.0' 'opencv-python==4.0.0.21' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler globus_sdk globus-cli 
+     pip install --use-deprecated=legacy-resolver nbtools 'igv-jupyter==0.9.8' 'cyjupyter==0.2.0' 'ccalnoir==2.7.1' 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' \
+     'plotly==4.1.0' 'orca==1.3.0' 'opencv-python==4.0.0.21' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler
 
 RUN echo "/home/jovyan/.local/lib/python3.7/site-packages" > /opt/conda/envs/python3.7/lib/python3.7/site-packages/conda.pth
 
