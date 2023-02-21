@@ -34,18 +34,10 @@ USER $NB_USER
 # install --channel anaconda --channel conda-forge r-argparse
 RUN mamba create -y --name python3.7 python=3.7 anaconda --channel conda-forge --channel anaconda
 
-RUN micromamba create -n python3.7 python=3.7 -c conda-forge
-RUN /bin/bash -c "micromamba info"
-RUN ./bin/micromamba shell init --shell=bash --prefix=~/micromamba
-RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
-    $MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
-    ./bin/micromamba install -y -n python3.7 -c anaconda anaconda"
-   
-RUN /bin/bash -c "eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)" && \
-    $MAMBA_EXE activate ~/micromamba/envs/python3.7 && \
-    ./bin/micromamba install -y -n python3.7 -c conda-forge -c anaconda 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \
-    'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \
-    'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'"
+RUN source activate python3.7 && \ 
+     mamba install -y 'tornado=5.1.1' 'ipywidgets=7.2*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \ 
+     'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \ 
+     'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'
 
 # . "${CONDA_DIR}/etc/profile.d/conda.sh" && . ~/micromamba/etc/profile.d/mamba.sh && \
 RUN eval "$("$MAMBA_EXE" shell hook -s bash)" && \
