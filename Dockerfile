@@ -32,7 +32,7 @@ USER $NB_USER
 #    && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc
 # RUN source $MICROMAMBA_INSTALL_FOLDER/.bashrc && micromamba 
 # install --channel anaconda --channel conda-forge r-argparse
-RUN mamba create -y --name python3.7 python=3.7 anaconda ipykernel --channel conda-forge --channel anaconda
+RUN mamba create -y --name python3.7 python=3.7 anaconda --channel conda-forge --channel anaconda
 
 RUN micromamba create -n python3.7 python=3.7 -c conda-forge
 RUN /bin/bash -c "micromamba info"
