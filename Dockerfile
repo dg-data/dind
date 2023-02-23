@@ -58,6 +58,6 @@ RUN rm -r /opt/conda/share/jupyter/kernels/python3 && \
 USER root
 
 RUN rm -r work
-
+CMD ["wrapdocker"]
 USER $NB_USER
 ENV TERM xterm
