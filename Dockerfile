@@ -65,6 +65,6 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin
 RUN chmod +x /sbin/tini
 ENTRYPOINT ["/sbin/tini","--","/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
-USER $NB_USER
+# USER $NB_USER
 ENV TERM xterm
 
