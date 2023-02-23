@@ -58,6 +58,6 @@ RUN rm -r /opt/conda/share/jupyter/kernels/python3 && \
 USER root
 
 RUN rm -r work
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/wrapdocker"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/wrapdocker", "&&"]
 USER $NB_USER
 ENV TERM xterm
