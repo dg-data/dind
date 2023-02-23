@@ -63,6 +63,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
+RUN apt-get install -y uidmap
 ENTRYPOINT ["/sbin/tini","--","/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
 # USER $NB_USER
