@@ -59,7 +59,7 @@ USER root
 
 RUN rm -r work
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
