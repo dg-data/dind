@@ -58,6 +58,9 @@ RUN rm -r /opt/conda/share/jupyter/kernels/python3 && \
 USER root
 
 RUN rm -r work
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/wrapdocker", "&&"]
+COPY ./docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 USER $NB_USER
 ENV TERM xterm
