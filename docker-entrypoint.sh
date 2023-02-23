@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
-/usr/local/bin/wrapper
+/usr/local/bin/wrapdocker
 exec "$@"
