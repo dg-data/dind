@@ -1,6 +1,4 @@
 #!/bin/bash -x
-set -e
-echo 'starting docker...'
+#set -e
 /usr/local/bin/wrapdocker
-echo '...jupyter'
 exec "$@"
