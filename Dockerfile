@@ -1,4 +1,4 @@
-FROM docker-20.10.5:dind
+FROM docker:20.10.5-dind
 # dind requires priviliged running, but there may be mitigation:
 # Does rootless help?
 # https://docs.docker.com/engine/security/rootless/
