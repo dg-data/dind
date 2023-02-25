@@ -29,7 +29,15 @@ USER jovyan
 WORKDIR $HOME
 
 USER root
-
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ARG TINI_VERSION=v0.18.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
+RUN chmod +x /sbin/tini
+ENTRYPOINT ["/sbin/tini","--","/usr/local/bin/docker-entrypoint.sh"]
+CMD ["/bin/bash"]
+# USER $NB_USER
+ENV TERM xterm
 # The following breaks the CMD used to start the docker daemon
 #ENTRYPOINT ["tini", "-g", "--"]
 #CMD ["jupyter", "notebook", "--port=8888", "--notebook-dir=/home/jovyan", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
