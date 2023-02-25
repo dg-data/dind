@@ -6,8 +6,10 @@ FROM docker:20.10.5-dind
 # Via https://devopscube.com/run-docker-in-docker/
 # Eg https://github.com/nestybox/sysbox
 
-RUN apk update && apk add bash docker-compose && apk add --update --no-cache python3 gcc python3-dev linux-headers musl-dev libffi-dev g++ tini npm git && ln -sf python3 /usr/bin/python && python3 -m ensurepip && pip3 install --no-cache --upgrade pip setuptools
+RUN apk update && apk add bash docker-compose && apk add --update --no-cache python3 gcc python3-dev linux-headers musl-dev libffi-dev g++ tini npm git \
+    && ln -sf python3 /usr/bin/python && python3 -m ensurepip && pip3 install --no-cache --upgrade pip setuptools
 # Get Rust; using sh for better compatibility with other base images
+RUN apk add -U curl
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
