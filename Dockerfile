@@ -66,6 +66,7 @@ RUN chmod +x /sbin/tini
 RUN apt-get install -y podman iptables
 RUN echo $NB_USER:100000:65535 > /etc/subuid; \
     echo $NB_USER:100000:65535 > /etc/subgid;
+RUN chmod u+s /usr/bin/newuidmap
 # RUN usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $NB_USER
 ENTRYPOINT ["/sbin/tini","--","/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
