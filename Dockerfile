@@ -7,7 +7,7 @@ USER root
 
 # Install the missing Qt4 API (used by matplotlib)
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common python3-pyqt5 \
-    libxtst6 libssl-dev libcurl4-openssl-dev gpg build-essential python-dev default-jdk apt-utils libxml2-dev libxml2
+    libxtst6 libssl-dev libcurl4-openssl-dev gpg build-essential python3-dev default-jdk apt-utils libxml2-dev libxml2
 
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
