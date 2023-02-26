@@ -63,9 +63,9 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
-RUN apt-get install -y uidmap
+RUN  apt-get -qq -y install podman && apt-get install -y iptables
 ENTRYPOINT ["/sbin/tini","--","/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
-# USER $NB_USER
+USER $NB_USER
 ENV TERM xterm
 
