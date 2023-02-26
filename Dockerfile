@@ -63,7 +63,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
-RUN apt-get install -y podman iptables shadow-utils
+RUN apt-get install -y podman iptables uidmap
 RUN echo $NB_USER:100000:65535 > /etc/subuid; \
     echo $NB_USER:100000:65535 > /etc/subgid;
 RUN chmod u+s /usr/bin/newuidmap
