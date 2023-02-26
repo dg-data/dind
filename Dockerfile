@@ -45,7 +45,7 @@ RUN ./autogen.sh --disable-nls --disable-man --without-audit --without-selinux -
 
 FROM djs55/vpnkit:${VPNKIT_VERSION} AS vpnkit
 
-FROM jupyter:minimal-notebook AS test-integration
+FROM jupyter/minimal-notebook AS test-integration
 # iproute2: for `ip` command that rootlesskit needs to exec
 # liblxc-common and lxc-utils: for `lxc-user-nic` binary required for --net=lxc-user-nic
 # iperf3: only for benchmark purpose
@@ -77,6 +77,17 @@ ENV PATH /home/user/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
 ENV LD_LIBRARY_PATH=/home/$NB_USER/lib
 WORKDIR /home/$NB_USER/hack
 
+RUN mamba create -y --name python3.7 python=3.7 anaconda --channel conda-forge --channel anaconda
+RUN echo "/home/jovyan/.local/lib/python3.7/site-packages" > /opt/conda/envs/python3.7/lib/python3.7/site-packages/conda.pth
+USER root
+# Add as Jupyter kernel
+RUN source activate python3.7 && python -m ipykernel install --name python3.7 --display-name 'Python 3.7'
+# Remove default Python kernel
+RUN rm -r /opt/conda/share/jupyter/kernels/python3 && \
+    printf '\nc.KernelSpecManager.ensure_native_kernel = False' >> /etc/jupyter/jupyter_notebook_config.py
+# RUN rm -r work
+ENTRYPOINT ["/sbin/tini","--","/home/$NB_USER/bin/dockerd-rootless.sh"]
+CMD ["/bin/bash"]
 FROM test-integration AS test-integration-docker
 COPY --from=artifact /rootlesskit-docker-proxy /home/$NB_USER/bin/
 ARG DOCKER_VERSION
@@ -89,5 +100,3 @@ ENV DOCKERD_ROOTLESS_ROOTLESSKIT_PORT_DRIVER=builtin
 ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
 RUN mkdir -p /home/user/.local
 VOLUME /home/$NB_USER/.local
-
-CMD ["dockerd-rootless.sh"]
