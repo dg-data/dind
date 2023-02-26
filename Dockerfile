@@ -14,16 +14,14 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN pip install --upgrade pip
-RUN pip install jupyter jupyterlab docker jupyter-server-proxy jupytext
-# Do we need to install?
-RUN jupyter labextension install @jupyterlab/server-proxy
+RUN pip install jupyter jupyterlab docker jupyterhub jupytext
 
 ARG NB_USER="jovyan"
 EXPOSE 8888
 RUN adduser -S $NB_USER && addgroup jovyan root
 ENV HOME=/home/$NB_USER NB_USER=$NB_USER 
 
-# COPY docker-compose.yml $HOME/docker-compose.yml
+COPY docker-compose.yml $HOME/docker-compose.yml
 
 USER jovyan
 WORKDIR $HOME
