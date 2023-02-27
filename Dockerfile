@@ -63,7 +63,15 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 RUN chmod +x /sbin/tini
-RUN apt-get install -y podman iptables uidmap
+# RUN apt-get install -y podman iptables uidmap
+ARG UBUNTU_VER='22.04'
+ARG KEY="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${UBUNTU_VER}/Release.key"
+ARG REPO="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${UBUNTU_VER}"
+RUN echo "deb $REPO/ /" | tee /etc/apt/sources.list.d/devel:kubic:libcontainers:unstable.list
+RUN curl -fsSL $KEY | gpg --dearmor | tee /etc/apt/trusted.gpg.d/devel_kubic_libcontainers_unstable.gpg > /dev/null
+RUN apt update
+RUN apt install podman
+
 RUN echo $NB_USER:200000:1000 > /etc/subuid; \
     echo $NB_USER:200000:1000 > /etc/subgid;
 RUN chmod u+s /usr/bin/newuidmap
