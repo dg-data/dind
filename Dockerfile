@@ -71,6 +71,7 @@ RUN chmod +s /usr/bin/newgidmap /usr/bin/newgidmap
 # RUN usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $NB_USER
 ADD https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/containers.conf /etc/containers/containers.conf
 ADD https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/podman-containers.conf /home/$NB_USER/.config/containers/containers.conf
+COPY ./storage.conf /etc/containers/storage.conf
 RUN chown $NB_USER:100 -R /home/$NB_USER
 VOLUME /var/lib/container
 VOLUME /home/$NB_USER/.local/share/containers
