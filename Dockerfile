@@ -70,7 +70,7 @@ ARG REPO="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers
 RUN echo "deb $REPO/ /" | tee /etc/apt/sources.list.d/devel:kubic:libcontainers:unstable.list
 RUN curl -fsSL $KEY | gpg --dearmor | tee /etc/apt/trusted.gpg.d/devel_kubic_libcontainers_unstable.gpg > /dev/null
 RUN apt update
-RUN apt install podman
+RUN apt install -y podman
 
 RUN echo $NB_USER:200000:1000 > /etc/subuid; \
     echo $NB_USER:200000:1000 > /etc/subgid;
