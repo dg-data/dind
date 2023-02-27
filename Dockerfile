@@ -9,17 +9,16 @@ USER root
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common python3-pyqt5 \
     libxtst6 libssl-dev libcurl4-openssl-dev gpg build-essential python3-dev default-jdk apt-utils libxml2-dev libxml2
 
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-    apt-get install -y docker-ce
+# RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+#    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+#    apt-get install -y docker-ce
 
 # Install the magic wrapper
 RUN wget https://raw.githubusercontent.com/jpetazzo/dind/master/wrapdocker --output-document=/usr/local/bin/wrapdocker && \
     chmod +x /usr/local/bin/wrapdocker
 
-# Set up Docker
-RUN gpasswd -a $NB_USER docker && \
-    newgrp docker
+# Setup Docker
+# RUN gpasswd -a $NB_USER docker && newgrp docker
 
 RUN pip install -v nbtools
 
