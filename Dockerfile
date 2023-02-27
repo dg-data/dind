@@ -74,7 +74,7 @@ ADD https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanima
 COPY ./storage.conf /etc/containers/storage.conf
 RUN chown 1000:100 -R /home/$NB_USER
 # VOLUME /var/lib/container
-VOLUME /home/$NB_USER/.local/share/containers
+# VOLUME /home/$NB_USER/.local/share/containers
 # chmod containers.conf and adjust storage.conf to enable Fuse storage.
 RUN chmod 644 /etc/containers/containers.conf; sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' -e 's|^mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' /etc/containers/storage.conf
 RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers /var/lib/shared/vfs-images /var/lib/shared/vfs-layers; touch /var/lib/shared/overlay-images/images.lock; touch /var/lib/shared/overlay-layers/layers.lock; touch /var/lib/shared/vfs-images/images.lock; touch /var/lib/shared/vfs-layers/layers.lock
