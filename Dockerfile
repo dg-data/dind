@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook:7285848c0a11
+FROM jupyter/minimal-notebook:lab-3.6.1
 ARG NB_USER=jovyan
 
 EXPOSE 8888
@@ -34,14 +34,14 @@ USER $NB_USER
 RUN mamba create -y --name python3.7 python=3.7 anaconda --channel conda-forge --channel anaconda
 
 RUN source activate python3.7 && \ 
-     mamba install -y 'tornado=6.1.0' 'ipywidgets=7.5*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \ 
+     mamba install -y 'tornado=6.2.0' 'ipywidgets=8.0*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \ 
      'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \ 
      'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'
 
 # . "${CONDA_DIR}/etc/profile.d/conda.sh" && . ~/micromamba/etc/profile.d/mamba.sh && \
 RUN source activate python3.7 && \ 
      pip install --use-deprecated=legacy-resolver nbtools 'igv-jupyter==0.9.8' 'cyjupyter==0.2.0' 'ipylab' 'cuzcatlan==0.9.3' 'ndex2==1.2.0.*' \
-     'plotly==4.1.0' 'orca==1.3.0' 'opencv-python==4.0.0.21' 'hca==4.8.0' 'humanfriendly==4.12.1' scanpy memory_profiler
+     'plotly==4.1.0' 'orca==1.3.0' 'opencv-python==4.0.0.21' 'humanfriendly==4.12.1' scanpy memory_profiler
 
 RUN echo "/home/jovyan/.local/lib/python3.7/site-packages" > /opt/conda/envs/python3.7/lib/python3.7/site-packages/conda.pth
 
