@@ -34,7 +34,7 @@ USER $NB_USER
 RUN mamba create -y --name python3.7 python=3.7 anaconda --channel conda-forge --channel anaconda
 
 RUN source activate python3.7 && \ 
-     mamba install -y 'tornado=6.2.0' 'ipywidgets=8.0*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \ 
+     mamba install -y 'tornado=6.1*' 'ipywidgets=8.0*' 'ipykernel' 'pandas' 'numexpr' 'matplotlib' 'scipy' 'seaborn' \ 
      'scikit-learn' 'scikit-image' 'sympy' 'cython' 'patsy' 'statsmodels' 'cloudpickle' 'dill' 'numba' \ 
      'bokeh' 'sqlalchemy' 'hdf5' 'h5py' 'vincent' 'beautifulsoup4' 'protobuf' 'xlrd' 'simplegeneric'
 
