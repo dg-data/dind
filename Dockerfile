@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook:96fc074aef8f
+FROM jupyter/minimal-notebook:e407f93c8dcc
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
