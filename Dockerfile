@@ -7,10 +7,12 @@ ENV NB_UID ${NB_UID}
 ENV HOME /home/${NB_USER}
 
 USER root
-RUN pip install --no-cache-dir ipylab
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
-RUN pip install --no-cache jupyter-offlinenotebook
+RUN pip install --no-cache-dir ipylab
+RUN pip install --no-cache --upgrade pip && \
+    pip install --no-cache nbgitpuller && \
+    pip install --no-cache jupyter-offlinenotebook
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 RUN npm install
 ENV PATH="${HOME}/.local/bin:${PATH}"
