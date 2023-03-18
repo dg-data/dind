@@ -17,5 +17,5 @@ RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 
-COPY browser.* plugin.json $HOME
+COPY browser.* plugin.json $HOME/
 # ENV PATH="${HOME}/.local/bin:${PATH}"
