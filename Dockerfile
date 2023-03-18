@@ -9,7 +9,7 @@ ENV HOME /home/${NB_USER}
 
 USER root
 RUN chown -R ${NB_UID} ${HOME}
-RUN apt-get install -y chromium-chromedriver
+RUN apt-get update && apt-get install -y chromium-chromedriver
 USER ${NB_USER}
 RUN pip install --no-cache-dir ipylab ipytree undetected-chromedriver
 RUN pip install --no-cache --upgrade pip && \
