@@ -9,10 +9,11 @@ ENV HOME /home/${NB_USER}
 
 USER root
 RUN chown -R ${NB_UID} ${HOME}
+RUN apt-get install -y chromium-chromedriver
 USER ${NB_USER}
-RUN pip install --no-cache-dir ipylab
+RUN pip install --no-cache-dir ipylab ipytree undetected-chromedriver
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache nbgitpuller && \
-    pip install --no-cache jupyter-offlinenotebook
+    pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 # ENV PATH="${HOME}/.local/bin:${PATH}"
