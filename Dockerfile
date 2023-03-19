@@ -18,4 +18,6 @@ RUN pip install --no-cache --upgrade pip && \
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 
 COPY browser.* plugin.json $HOME/
+RUN mkdir -p $HOME/.jupyter
+COPY jupyter_config.json $HOME/.jupyter
 # ENV PATH="${HOME}/.local/bin:${PATH}"
