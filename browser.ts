@@ -32,11 +32,13 @@ const plugin = {
 
     app.serviceManager.ready.then(async () => {
       nbtracker.currentChanged.connect(async (_: INotebookTracker, nbPanel: NotebookPanel | null) => {
-        if (nbPanel && autorunPath.endsWith(nbPanel.context.path)) {
+        if (nbPanel && autorunPath.endsWith(nbPanel.context.path)) {   
           nbPanel.sessionContext.ready.then(() => {
-            app.commands.execute('notebook:run-all-cells').then(() => {
-              console.log("Autorun: " + nbPanel.context.path);
-            });
+            if (nbPanel.context.model.toJSON().cells[0].execution_count > 1) {
+              app.commands.execute('notebook:run-all-cells').then(() => {
+                console.log("Autorun: " + nbPanel.context.path);
+              });
+            };
           });
         };
       });
