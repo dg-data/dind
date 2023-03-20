@@ -2,7 +2,7 @@
   "ServerApp": {
     "tornado_settings": {
       "page_config_data": {
-        "autorun_notebook": "Untitled.ipynb"
+        "autorun_notebook": "browser.ipynb"
       }
     }
   }
