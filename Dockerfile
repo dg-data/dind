@@ -15,9 +15,8 @@ RUN pip install --no-cache-dir ipylab ipytree undetected-chromedriver
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache nbgitpuller && \
     pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
-RUN pip install qgrid aiohttp_proxy aiohttp_socks lxml
+RUN pip install bokeh jupyter_bokeh aiohttp_proxy aiohttp_socks lxml
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
-RUN jupyter labextension install @j123npm/qgrid2@1.1.4
 COPY --chown="${NB_UID}" browser.* plugin.json $HOME/
 RUN mkdir -p $HOME/.jupyter
 COPY jupyter_config.json $HOME/.jupyter
