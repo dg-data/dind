@@ -21,7 +21,7 @@ RUN apt-get update
 RUN apt-get -y install firefox-mozilla-build
 RUN apt-get install libdbus-glib-1-2
 USER ${NB_USER}
-RUN pip install --no-cache-dir "ipywidgets==8.0.4" ipylab ipytree undetected-chromedriver
+RUN pip install --no-cache-dir "ipywidgets==8.0.0" ipylab ipytree undetected-chromedriver
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache nbgitpuller && \
     pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
