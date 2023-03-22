@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir "ipywidgets==8.0.0" ipylab ipytree undetected-chr
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache nbgitpuller && \
     pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
-RUN pip install bokeh jupyter_bokeh aiohttp_proxy aiohttp_socks lxml
+# RUN pip install bokeh jupyter_bokeh aiohttp_proxy aiohttp_socks lxml
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 COPY --chown="${NB_UID}" browser.* plugin.json $HOME/
 RUN mkdir -p $HOME/.jupyter
