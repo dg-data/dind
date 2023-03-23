@@ -20,7 +20,7 @@ RUN echo "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt a
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 2667CA5C
 RUN apt-get update
 RUN apt-get -y install firefox-mozilla-build
-RUN apt-get -y install libdbus-glib-1-2 libgtk-3-0 libasound2 dbus-x11
+RUN apt-get -y install libdbus-glib-1-2 libgtk-3-0 libasound2 libx11-xcb1
 USER ${NB_USER}
 RUN pip install --no-cache-dir ipylab ipytree undetected-chromedriver
 RUN pip install --no-cache --upgrade pip && \
