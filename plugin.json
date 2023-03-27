@@ -8,7 +8,7 @@
       "description": "Whether to allow execution of modules directly from CDN. The accepted values are `never` and `always-insecure`.",
       "type": "string",
       "enum": ["awaiting-decision", "always-insecure", "never"],
-      "default": "awaiting-decision"
+      "default": "always-insecure"
     },
     "requirejsCDN": {
       "title": "Base URL of a CDN for requirejs",
