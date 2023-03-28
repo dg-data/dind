@@ -2,7 +2,7 @@
     "allowCDN": "always-insecure",
     "requirejsCDN": "https://cdn.jsdelivr.net/npm/",
     "urls": [
-        "browser.ts"
+        "https://raw.githubusercontent.com/dg-data/dind/main/browser.ts"
     ],
     "showIconInLauncher": true,
     "plugins": [],
