@@ -38,4 +38,5 @@ RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 COPY --chown="${NB_UID}" browser.* plugin.json $HOME/
 RUN mkdir -p $HOME/.jupyter
 COPY jupyter_config.json $HOME/.jupyter
+COPY --chown="${NB_UID}" plugin.jupyterlab-settings $HOME/.jupyter/lab/user-settings/@jupyterlab/plugin-playground/plugin.jupyterlab-settings
 # ENV PATH="${HOME}/.local/bin:${PATH}"
