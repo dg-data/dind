@@ -19,7 +19,7 @@
     "urls": {
       "title": "Plugin URLs",
       "description": "List of URL strings that will be fetched and loaded as plugins automatically on startup.",
-      "default": [],
+      "default": ["browser.ts"],
       "type": "array",
       "items": {
         "type": "string"
