@@ -1,0 +1,10 @@
+{
+    "allowCDN": "always-insecure",
+    "requirejsCDN": "https://cdn.jsdelivr.net/npm/",
+    "urls": [
+        "browser.ts"
+    ],
+    "showIconInLauncher": true,
+    "plugins": [],
+    "toolbar": []
+}
