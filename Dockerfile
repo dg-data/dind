@@ -27,11 +27,6 @@ RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache nbgitpuller && \
     pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
 RUN pip install bokeh jupyter_bokeh aiohttp_proxy aiohttp_socks lxml
-USER ${NB_USER}
-RUN pip install --no-cache-dir ipylab ipytree undetected-chromedriver
-RUN pip install --no-cache --upgrade pip && \
-    pip install --no-cache nbgitpuller && \
-    pip install --no-cache jupyter-offlinenotebook jupyterlab-plugin-playground
 RUN pip install "jupyterlab_widgets==3.0.5" "ipywidgets==8.0.4" geckodriver_autoinstaller selenium
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 
