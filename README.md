@@ -13,4 +13,4 @@ Basic steps:
 - the activated plugin reads database *jupyter-offlinenotebook* from your browser and saves its toc to *browser.json*
 - it loads and runs the notebook configured in [jupyter_config.json](http://github.com/dg-data/dind/blob/main/jupyter_config.json "jupyter_config.json"), namely [browser.ipynb](http://github.com/dg-data/dind/blob/main/browser.ipynb "browser.ipynb")
 - the notebook creates a new JupyterLab panel with an *ipytree* widget and some buttons
-- on clicking the *Open* button it runs a command defined by the plugin which uploads the selected notebook to JupyterLab and opens it
+- on clicking the *Open* button it runs a command defined by the plugin which uploads the selected notebook from the previously saved ones to JupyterLab and opens it
